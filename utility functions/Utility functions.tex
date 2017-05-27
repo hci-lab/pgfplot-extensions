@@ -1,0 +1,110 @@
+\documentclass[a4paper]{book}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{ifthen}
+
+
+%	START OF CORE OPERATIONS
+
+% checks if 2 values modulas(with the same base) are equals or not (1 if equals/ 0 if not)
+\newcommand{\modNck}[3]{\pgfmathparse{int(Mod(#1,#3)) == int(Mod(#2,#3)) ? 1 : 0}\pgfmathresult}
+% checks if 2 values divitions(with the same base) are equals or not (1 if equals/ 0 if not) 
+\newcommand{\devNck}[5]{\pgfmathparse{int(#1/#3) == int(#2/#3) ? int(Mod(#4,#5)) :  }\pgfmathresult}
+% checks if 2 values are equals or not (1 if equals/ 0 if not)
+\newcommand{\ife}[2]{\pgfmathparse{#1 == #2 ? 1 : 0}\pgfmathresult}
+% checks if 2 values(casted to integers) are equals or not (1 if equals/ 0 if not)
+\newcommand{\ifNp}[2]{\pgfmathparse{int(#1) == int(#2) ? #1 : 0}\pgfmathresult}
+% multiply two values
+\newcommand{\mul}[2]{\pgfmathparse{#1*#2}\pgfmathresult}
+% divide two values(casted to integer)(without reminder)
+\newcommand{\dev}[2]{\pgfmathparse{int(#1/#2)}\pgfmathresult}
+% add two values
+\newcommand{\add}[2]{\pgfmathparse{#1+#2}\pgfmathresult}
+% modulas two values(casted to integer)
+\newcommand{\mod}[2]{\pgfmathparse{int(Mod(#1,#2))}\pgfmathresult}
+% get max of two values(casted to integer)
+\newcommand{\maxe}[2]{\pgfmathparse{int(max(#1,#2))}\pgfmathresult}
+% get min of two values(casted to integer)
+\newcommand{\mine}[2]{\pgfmathparse{int(min(#1,#2))}\pgfmathresult}
+% get the number of existance of number in array
+\newcommand{\numOfExistance}[2]{
+	\newcounter{existance}
+	\setcounter{existance}{0}
+	\foreach \xe in #2 {
+		\ifthenelse{\xe=#1}
+			{\stepcounter{existance}}
+	}
+	\theexistance
+}
+
+\newcommand{\printOnce}[2]{
+	\newcounter{stemer}
+	\setcounter{stemer}{0}
+	\foreach \xe in #1 {
+		\pgfmathparse{int(\xe/#2)}
+		\ifthenelse{\pgfmathresult = \value{stemer}}
+			{\setcounter{stemer}{\pgfmathresult}}
+			{
+				\setcounter{stemer}{\pgfmathresult}
+				\thestemer
+			}
+	}
+}
+% get min of array
+\newcommand{\minForAll}[1]{
+	\newcounter{mini}
+	\foreach \xe in #1 {
+		\setcounter{mini}{\xe}
+	}
+	\foreach \xe in #1 {
+		\ifthenelse{\xe < \themini}
+			{\setcounter{mini}{\xe}}
+	}
+	\themini
+}
+% get max of array
+\newcommand{\maxForAll}[1]{
+	\newcounter{maxi}
+	\foreach \xe in #1 {
+		\ifthenelse{\xe > \themaxi}
+			{\setcounter{maxi}{\xe}}
+	}
+	\themaxi
+}
+% checks if this value exist or unique or not (1 if it's unique/ 0 if not)
+\newcommand{\isunique}[2]{
+	\newcounter{uniqueness}
+	\setcounter{uniqueness}{0}
+	\foreach \xe in #2 {
+		\ifthenelse{\xe = #1}
+			{\stepcounter{uniqueness}}
+	}
+	\ifthenelse{\theuniqueness > 1}
+	{\setcounter{uniqueness}{0}}
+	
+	\theuniqueness
+}
+% get array length
+\newcommand{\arrayLength}[1]{
+	\newcounter{count}
+	\foreach \i in #1{
+		\stepcounter{count}
+	}
+	\thecount
+}
+
+%	END OF CORE OPERATIONS
+
+\begin{document}
+
+%\numOfExistance{3}{{1,3,3,4,5}}	% WORKING
+%\maxe{10}{13}						% WORKING
+%\mine{10}{13}						% WORKING
+%\minForAll{{1,2,3,4,5}}			% WORKING
+%\maxForAll{{1,2,3,4,5}}			% WORKING
+%\isunique{1}{{1,2,3,4,5}}			% WORKING
+%\arrayLength{{1,2,3,4,5,6}}		% WORKING
+\printOnce{{10,11,20,22,30,33,34}}{10}
+
+\end{document}
