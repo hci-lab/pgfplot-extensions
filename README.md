@@ -86,9 +86,18 @@ A **stem-and-leaf** display is a device for presenting quantitative data in a gr
  It gets the given array length
  `\arrayLength{{1,2,3,4,5,6}}`
  
- * **Print Once**
- It takes array data and print each number exist in it once and only once
+ * **Divide and Print Once**
+ It takes array data, divide it by number and print each number exist in it once and only once
  `\printOnce{{10,11,20,22,30,33,34}}{10}`
-
+ 
+ * **Divide and Check**
+ Checks if 2 values results division(with the same dominator) are equals or not (1 if equals/ 0 if not) **means** _(A / C == B / C) or not_, it checks of first two element and the third is the dominator used for division
+ `\devNck{20}{10}{10}`
+ 
+ * **Mod and Check**
+ Checks if 2 values results of modulas(with the same dominator) are equals or not (1 if equals/ 0 if not) **means** _(A % C == B % C) or not_, it checks of first two element and the third is the modulas
+ `\modNck{10}{20}{4}`
+ 
+ **There's more docs will comme, stay tuned**
 ### Created By
  * [Hisham Elamir](https://github.com/HishamElamir)
