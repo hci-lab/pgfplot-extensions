@@ -11,12 +11,24 @@ A **stem-and-leaf** display is a device for presenting quantitative data in a gr
 `\stemNleaf{**data type**}{**data array**}{**fraction**}{**stem color**}{**leaf color**}{**bar color**}`
 
 `\stemNleaf{10}{{1.1,2.2,3,4,5,6,7,8,9,10,11,12,17,20,22,25,29,31,43,50}}{1}{blue}{red}{green}`
+![StemAndLeafImage](https://github.com/hci-lab/pgfplot-extensions/blob/master/docImages/StemAndLeaf.PNG)
+
+### API Reference
+ `\stemNleaf{**data type**}{**data array**}{**fraction**}{**stem color**}{**leaf color**}{**bar color**}`
+ `\fractionalStemNleaf{**data type**}{**data array**}{**stem color**}{**leaf color**}{**bar color**}`
+ 
+ `\partialStemNleaf{**data type**}{**data array**}{**fraction**}`
+ 
+ `\fivePinsStemNleaf{**data type**}{**data array**}{**fraction**}`
 
 * **Data type**
   This parameter specify the data ranges, example: {10} this means the data maybe between 10 and 100 (has 2 digit numbers)
   
 * **Data array**
   For this parameter user put his data, in order manner (preferred)
+  
+* **Fraction**
+  Fraction is used when you do not want to round your data array, put **data type** equals _1_ for new stem type
   
 * **Stem color**
   Here user specify the stem color it maybe any color he want and the **default** is _Black_
@@ -28,3 +40,4 @@ A **stem-and-leaf** display is a device for presenting quantitative data in a gr
   Here user specify the bar color it maybe any color he want and the **default** is _Black_.
   The bar is divide the plot into stem and leaf.
   
+### See [Notes and TODO](https://github.com/hci-lab/pgfplot-extensions/blob/master/Stem%20and%20Leaf%20plot/README.md)
