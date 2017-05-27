@@ -1,6 +1,8 @@
 # pgfplot-extensions
 
-PGFPlots draws high-qual­ity func­tion plots in nor­mal or log­a­rith­mic scal­ing with a user-friendly in­ter­face di­rectly in TEX. And this rep is responsible for adding hci-lab helwan university extension for it
+PGFPlots draws high-quality function plots in normal or logarithmic scaling with a user-friendly interface directly in TEX. And this rep is responsible for adding hci-lab helwan university extension for it
+
+These project created by hci-lab students under [Dr. waleed a. yousef](https://github.com/DrWaleedAYousef) supervision.
 
 ## [Stem and Leaf](https://github.com/hci-lab/pgfplot-extensions/tree/master/Stem%20and%20Leaf%20plot) plot
 
@@ -41,3 +43,52 @@ A **stem-and-leaf** display is a device for presenting quantitative data in a gr
   The bar is divide the plot into stem and leaf.
   
 ### See [Notes and TODO](https://github.com/hci-lab/pgfplot-extensions/blob/master/Stem%20and%20Leaf%20plot/README.md)
+
+### Created By
+ * [Hisham Elamir](https://github.com/HishamElamir)
+ * [Mahmoud Hamdy](https://github.com/mamhoud)
+
+
+## [Utility Functions](https://github.com/hci-lab/pgfplot-extensions/tree/master/utility%20functions)
+ 
+ Some computational functions that helps _LATEX_ user to perform well with any _pgf_-extension
+
+### Basic usage
+
+`\arrayLength{{1,2,3,4,5,6}}`
+
+### API Reference
+ * **Number of Existance**
+ Gets number of any element existance in given data array
+ `\numOfExistance{3}{{1,3,3,4,5}}`
+ 
+ * **Max**
+ Gets the maximum value of given two elements.
+ `\maxe{10}{13}`
+ 
+ * **Min**
+ Gets the minimum value of given two elements.
+ `\mine{10}{13}`
+ 
+ * **Maximum for All**
+ Gets the maximum value in the given array using natural order.
+ `\maxForAll{{1,2,3,4,5}}`
+ 
+ * **Minimum for All**
+ Gets the minimum value in the given array using natural order.
+ `\minForAll{{1,2,3,4,5}}`
+ 
+ * **Is Unique**
+ Check if the given number is exist in array and it's unqiue or not
+ `\isunique{1}{{1,2,3,4,5}}`
+ 
+ * **Array Length**
+ It gets the given array length
+ `\arrayLength{{1,2,3,4,5,6}}`
+ 
+ * **Print Once**
+ It takes array data and print each number exist in it once and only once
+ `\printOnce{{10,11,20,22,30,33,34}}{10}`
+
+### Created By
+ * [Hisham Elamir](https://github.com/HishamElamir)
