@@ -101,3 +101,7 @@ A **stem-and-leaf** display is a device for presenting quantitative data in a gr
  **There's more docs will comme, stay tuned**
 ### Created By
  * [Hisham Elamir](https://github.com/HishamElamir)
+
+
+## [Parallel Coordinates](https://github.com/hci-lab/pgfplot-extensions/tree/master/Parallel%20Coordinates) plot
+Docs are comming soon!!!
