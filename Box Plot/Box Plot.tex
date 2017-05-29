@@ -1,0 +1,386 @@
+ 
+
+\documentclass[11pt, b6paper, landscape, oneside]{memoir}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{color, xcolor, colortbl}
+\usepackage{graphicx}
+\usepackage{natbib, bibentry}
+\usepackage{subfig, picinpar}
+\usepackage{titling}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsfonts, amssymb, bm}
+\usepackage{verbatim}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{pagecolor}
+\usepackage{array}
+\usepackage{paralist}
+\usepackage{geometry}
+\usepackage{dashrule}
+\usepackage{tikz-timing}
+\usepackage{pgf}
+\usepackage{enumitem}
+\usepackage{sagetex}
+\usepackage{tkz-fct}
+\usepackage{pgfplotstable,filecontents}
+\usepackage{fp}
+%\usepackage{pgfplotstable}
+
+\usepackage{tikz,pgfplots}
+\usetikzlibrary{arrows,automata,calc}
+\usepackage[latin1]{inputenc}
+\pgfplotsset{compat=1.11}
+
+\pgfplotsset{width=7cm,compat=1.13}\usepgfplotslibrary{statistics}
+
+
+\definecolor{bgblue}{rgb}{0.41961,0.90784,0.90784}%
+\definecolor{bgred}{rgb}{1,0.61569,0.61569}%
+\definecolor{fgblue}{rgb}{0,0,0.6}%
+\definecolor{fgred}{rgb}{0.6,0,0}%
+
+\hypersetup{
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=blue
+}
+
+\geometry{left=.1in, right=.1in, top=.1in, bottom=.15in}
+\setlength{\footskip}{.1in}
+
+\newcommand\HR{\rule{.5em}{.4pt}}
+
+\usepackage{fourier}
+\DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
+
+\usepackage{listings}
+\lstloadlanguages{Matlab, Verilog, C}
+\lstset{language=Verilog, xleftmargin=0pt, numberstyle=\tiny, numbersep=0pt, breaklines=true, breakindent=20pt, basicstyle=\small, showstringspaces=false, commentstyle=\color{blue}\tiny, frame=single, frameround=tttt}
+\renewcommand{\lstlistingname}{
+  \textbf{\underline{Matlab Code}}}
+
+\definecolor{dblackcolor}{rgb}{0.0,0.0,0.0}
+\definecolor{dbluecolor}{rgb}{0.01,0.02,0.7}
+\definecolor{dgreencolor}{rgb}{0.2,0.4,0.0}
+\definecolor{dgraycolor}{rgb}{0.30,0.3,0.30}
+\newcommand{\dblue}{\color{dbluecolor}\bf}
+\newcommand{\dred}{\color{dredcolor}\bf}
+\newcommand{\dblack}{\color{dblackcolor}\bf}
+\lstdefinelanguage{Sage}[]{Python}{morekeywords={False,sage,True},sensitive=true}
+\lstdefinestyle{customsage}{
+  frame=single,
+  showtabs=False,
+  showspaces=False,
+  showstringspaces=False,
+  commentstyle={\ttfamily\color{dgreencolor}},
+  keywordstyle={\ttfamily\color{dbluecolor}\bfseries},
+  stringstyle={\ttfamily\color{dgraycolor}\bfseries},
+  language=Sage,
+  basicstyle={\fontsize{10pt}{10pt}\ttfamily},
+  aboveskip=0.3em,
+  belowskip=0.1em,
+  numbers=left,
+  numbersep=10pt,
+  numberstyle=\tiny\color{dgraycolor}
+}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=single,
+  frameround=tttt,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\setcounter{MaxMatrixCols}{30}
+
+\newcommand{\qed}{\hspace*{\fill}\rule{0.6em}{0.6em}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\hspace*{\fill} \rule{0.5em}{0.5em}}
+\newcommand{\plus}[0]{\FPeval{\x}{ clip(1 + 2) } \x}
+\newcommand{\icol}[1]{% inline column vector
+  \left(\begin{smallmatrix}#1\end{smallmatrix}\right)%
+}
+
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\newcommand{\MyDraft}{false}
+
+\newcommand{\TimingExample}[1]{%
+  \vspace{.1in}
+
+  #1 \hfill \hdashrule[0ex]{.96\textwidth}{.1pt}{5pt}
+}%
+
+\newcommand{\KMapGrid}[3]{
+  \renewcommand{\arraystretch}{#1}
+  \begin{tabular}{|p{#2in}|p{#2in}|p{#2in}|p{#2in}|}
+    \hline
+    & & & \\ \hline
+    & & & \\ \hline
+    \ifnum #3=4
+    & & & \\ \hline
+    & & & \\ \hline
+    \fi
+  \end{tabular}
+}
+
+\newenvironment{KMap}[2]
+{ \renewcommand{\arraystretch}{#1}
+  \begin{tabular}{|>{\centering\arraybackslash}p{#2in}|>{\centering\arraybackslash}p{#2in}|>{\centering\arraybackslash}p{#2in}|>{\centering\arraybackslash}p{#2in}|}
+    \hline
+    }
+    {
+  \end{tabular}
+}
+
+\newcounter{PageDummyCounter}
+
+\graphicspath{{./ChI01/}{./Ch02/}{./Ch03/}{./Ch04/}{./Ch05/}{./Ch06/}{./Ch07/}{./Ch08/}{./Ch09/}{./Ch10/}{./Ch11/}{./Ch12/}{./Ch13/}{./Ch14/}{./Ch15/}{./Ch16/}{./Ch17/}{./Ch18/}{./Ch19/}{./Ch20/}}
+
+\nobibliography{publications,booksIhave}
+
+
+
+\newcommand{\MyBoxplotValues}{    [above, font=\tiny]
+  node at
+  (boxplot whisker cs:\boxplotvalue{lower whisker},1)
+  {\pgfmathprintnumber{\boxplotvalue{lower whisker}}}
+  node at
+  (boxplot box cs: \boxplotvalue{median},1)
+  {\pgfmathprintnumber{\boxplotvalue{median}}}
+  node at
+  (boxplot whisker cs:\boxplotvalue{upper whisker},1)
+  {\pgfmathprintnumber{\boxplotvalue{upper whisker}}}
+  [below, font=\tiny]
+  node at
+  (boxplot whisker cs:\boxplotvalue{lower quartile},0)
+  {\pgfmathprintnumber{\boxplotvalue{lower quartile}}}
+  node at
+  (boxplot whisker cs:\boxplotvalue{upper quartile},0)
+  {\pgfmathprintnumber{\boxplotvalue{upper quartile}}}
+}
+
+
+%%%\N \FPeval{\w}{clip(\N / 2 - .5)} \w 
+%%%\newcommand{\e}{\pgfplotstablegetelem{0}{\w}\of{Graphics/table.dat} \pgfplotsretval}
+%%%\else \FPeval{\x}{clip(\N / 2)}  \x  \\ \FPeval{\y}{clip(\N / 2 - 1)} \y \\
+%%%\newcommand{\z}{\pgfplotstablegetelem{0}{\x}\of{Graphics/table.dat} \pgfplotsretval}   \z
+%%%\newcommand{\s}{\pgfplotstablegetelem{0}{\y}\of{Graphics/table.dat} \pgfplotsretval}   \s \\ \z
+%%%\FPeval{\q}{clip(\s + (\z - \s) * .5)} \q  
+
+%\newcommand{\Median}[0]{\ifodd\N\FPeval{\x}{ clip(\N / 2 -.5) } \pgfplotstablegetelem{0}{\x}\of{Graphics/table.dat}\pgfplotsretval
+%\else \FPeval{\y}{ clip(\N / 2) } 
+%\pgfplotstablegetelem{0}{\y}\of{Graphics/table.dat} \newcommand{\s}{\pgfplotsretval}  
+%\pgfplotstablegetcolsof{Graphics/table.dat} \renewcommand{\N}{\pgfplotsretval} 
+%\FPeval{\w}{ clip(\N / 2 - 1) }  
+%\pgfplotstablegetelem{0}{\w}\of{Graphics/table.dat} \newcommand{\z}{\pgfplotsretval} 
+%\s
+% %\pgfplotstablegetelem{0}{\y}\of{Graphics/table.dat} \renewcommand{\s}{\pgfplotsretval} \s \\ \z
+%\FPeval{\q}{ clip(\z + (\s - \z) / 2) } \q
+% \fi}
+%
+%
+
+%\fi}
+
+%\FPeval{\x}{\z - \s}
+%\renewcommand{\plus}[2]{\FPeval{\x}{#1 + #2} \x}
+%\pgfplotstablegetelem{0}{4}\of{Graphics/table.dat} \newcommand\x {\pgfplotsretval}
+%\FPeval{\y}{\x}
+%\pgfplotstablegetelem{0}{5}\of{Graphics/table.dat} \newcommand\w {\pgfplotsretval}
+
+%\FPeval{\q}{\y + (\w - \y) * .5}
+
+
+
+%\FPeval{\x}{clip(\N / 2)} 
+%\FPeval{\y}{clip(\N / 2 - 1)} 
+%\pgfplotstablegetelem{0}{\x}\of{Graphics/table.dat} \newcommand{\z}{\pgfplotsretval}  
+%\FPeval{\zz}{\z} 
+%\pgfplotstablegetelem{0}{\y}\of{Graphics/table.dat} \newcommand{\s}{\pgfplotsretval}  
+%\FPeval{\q}{clip(\s + (\zz - \s) * .5 )} 
+%\newcommand{\Test}[0]{ \ifodd\N \FPeval{\w}{1 + 2} \w
+%\else \FPeval{\w}{1 + 5} \w
+%\fi }
+
+\pgfplotstablegetcolsof{Graphics/table.dat} \newcommand{\n}{\pgfplotsretval} 
+\FPeval{\N}{\n}
+\ifodd\N
+\FPeval{\mid}{clip(\N / 2 - .5)}
+\else
+\FPeval{\mid}{clip(\N / 2)}
+\fi 
+
+\newcommand{\Median}[0]{ \ifodd\N   
+\newcommand{\med}{\pgfplotstablegetelem{0}{\mid}\of{Graphics/table.dat} \pgfplotsretval} \med \\
+\else  \FPeval{\evenpos}{clip(\N / 2 - 1)} 
+\pgfplotstablegetelem{0}{\mid}\of{Graphics/table.dat} \newcommand{\tmp}{\pgfplotsretval}  
+\FPeval{\EvenVal}{\tmp} 
+\pgfplotstablegetelem{0}{\evenpos}\of{Graphics/table.dat} \newcommand{\evenval}{\pgfplotsretval}  
+\FPeval{\med}{clip(\evenval + (\EvenVal - \evenval) * .5 )} \med \\
+\fi } 
+
+\newcommand{\LQ}[0]{\ifodd\mid
+ \FPeval{\a}{clip(\mid / 2 - .5)} \FPeval{\b}{clip(\mid / 2 + .5)} 
+\pgfplotstablegetelem{0}{\a}\of{Graphics/table.dat} \newcommand{\e}{\pgfplotsretval}  
+\FPeval{\d}{\e}  
+\pgfplotstablegetelem{0}{\b}\of{Graphics/table.dat} \newcommand{\f}{\pgfplotsretval}  
+\FPeval{\lq}{clip(\d + (\f - \d) * .25 )} \lq \\
+\else \FPeval{\a}{ clip(\mid / 2 )} 
+\renewcommand{\lq}{\pgfplotstablegetelem{0}{\a}\of{Graphics/table.dat} \pgfplotsretval} \lq \\
+\fi }
+
+\newcommand{\UQ}[0]{\ifodd\N  \ifodd\mid  %11
+\FPeval{\g}{clip(\mid * 1.5 - .5)} \FPeval{\o}{clip(\mid * 1.5 + .5)} 
+\pgfplotstablegetelem{0}{\g}\of{Graphics/table.dat} \newcommand{\h}{\pgfplotsretval}  
+\FPeval{\m}{\h}  
+\pgfplotstablegetelem{0}{\o}\of{Graphics/table.dat} \newcommand{\p}{\pgfplotsretval}  
+\FPeval{\uq}{clip(\m + (\p - \m) * .75 )} \uq \\
+\else %9
+ \FPeval{\q}{ clip(\mid * 1.5 )}
+\pgfplotstablegetelem{0}{\q}\of{Graphics/table.dat} \newcommand{\uq}\pgfplotsretval \uq \\
+\fi 
+\else 
+\ifodd\mid %10
+\FPeval{\r}{clip(\mid * 1.5 - 1.5)} 
+\FPeval{\w}{clip(\mid * 1.5 - .5)} 
+\pgfplotstablegetelem{0}{\r}\of{Graphics/table.dat} \newcommand{\s}{\pgfplotsretval}  
+\FPeval{\u}{\s}  
+\pgfplotstablegetelem{0}{\w}\of{Graphics/table.dat} \newcommand{\x}{\pgfplotsretval}  
+\FPeval{\uq}{clip(\u + (\x - \u) * .75 )} \uq \\
+\else %8
+\FPeval{\z}{ clip(\mid * 1.5  - 1)} 
+\pgfplotstablegetelem{0}{\z}\of{Graphics/table.dat} \newcommand{\uq}\pgfplotsretval \uq \\
+\fi 
+\fi }
+
+\newcommand{\LW}[0]{\ifodd\mid 
+ \FPeval{\DA}{clip(\mid / 2 - .5)} \FPeval{\DD}{clip(\mid / 2 + .5)} 
+\pgfplotstablegetelem{0}{\DA}\of{Graphics/table.dat} \newcommand{\DB}{\pgfplotsretval}  
+\FPeval{\DC}{\DB}  
+\pgfplotstablegetelem{0}{\DD}\of{Graphics/table.dat} \newcommand{\DE}{\pgfplotsretval}  
+\FPeval{\DF}{clip(\DC + (\DE - \DC) * .25 )}
+\FPeval{\Y}{\DF}
+\else
+ \FPeval{\DG}{ clip(\mid / 2 )} 
+\pgfplotstablegetelem{0}{\DG}\of{Graphics/table.dat} \newcommand{\DI}\pgfplotsretval 
+\FPeval{\Y}{\DI}
+\fi
+\ifodd\N  \ifodd\mid %11
+\FPeval{\DH}{clip(\mid * 1.5 - .5)} \FPeval{\DL}{clip(\mid * 1.5 + .5)} 
+\pgfplotstablegetelem{0}{\DH}\of{Graphics/table.dat} \newcommand{\DU}{\pgfplotsretval}  
+\FPeval{\DK}{\DU}  
+\pgfplotstablegetelem{0}{\DL}\of{Graphics/table.dat} \newcommand{\DM}{\pgfplotsretval}  
+\FPeval{\T}{clip(\DK + (\DM - \DK) * .75 )}
+\else
+ \FPeval{\DN}{ clip(\mid * 1.5 )} %9
+\pgfplotstablegetelem{0}{\DN}\of{Graphics/table.dat} \newcommand{\T}{\pgfplotsretval}
+\fi 
+\else 
+\ifodd\mid %10
+\FPeval{\DO}{clip(\mid * 1.5 - 1.5)} 
+\FPeval{\DR}{clip(\mid * 1.5 - .5)} 
+\pgfplotstablegetelem{0}{\DO}\of{Graphics/table.dat} \newcommand{\DP}{\pgfplotsretval}  
+\FPeval{\DQ}{\DP}  
+\pgfplotstablegetelem{0}{\DR}\of{Graphics/table.dat} \newcommand{\DS}{\pgfplotsretval}  
+\FPeval{\T}{clip(\DQ + (\DS - \DQ) * .75 )}
+\else %8
+\FPeval{\DT}{ clip(\mid * 1.5  - 1)} 
+\pgfplotstablegetelem{0}{\DT}\of{Graphics/table.dat} \newcommand{\T}\pgfplotsretval
+\fi 
+
+\fi 
+\FPeval{\lw}{ clip(\Y - 1.5 * (\T - \Y)) } \lw \\
+
+}
+
+
+
+\newcommand{\UW}[0]{\ifodd\mid 
+ \FPeval{\TA}{clip(\mid / 2 - .5)} \FPeval{\TD}{clip(\mid / 2 + .5)} 
+\pgfplotstablegetelem{0}{\TA}\of{Graphics/table.dat} \newcommand{\TB}{\pgfplotsretval}  
+\FPeval{\TC}{\TB}  
+\pgfplotstablegetelem{0}{\TD}\of{Graphics/table.dat} \newcommand{\TE}{\pgfplotsretval}  
+\FPeval{\TF}{clip(\TC + (\TE - \TC) * .25 )}
+\FPeval{\X}{\TF}
+\else
+ \FPeval{\TG}{ clip(\mid / 2 )} 
+\pgfplotstablegetelem{0}{\TG}\of{Graphics/table.dat} \newcommand{\TI}\pgfplotsretval 
+\FPeval{\X}{\TI}
+\fi
+\ifodd\N  \ifodd\mid %11
+\FPeval{\TH}{clip(\mid * 1.5 - .5)} \FPeval{\TL}{clip(\mid * 1.5 + .5)} 
+\pgfplotstablegetelem{0}{\TH}\of{Graphics/table.dat} \newcommand{\TJ}{\pgfplotsretval}  
+\FPeval{\TK}{\TJ}  
+\pgfplotstablegetelem{0}{\TL}\of{Graphics/table.dat} \newcommand{\TM}{\pgfplotsretval}  
+\FPeval{\t}{clip(\TK + (\TM - \TK) * .75 )}
+\else
+ \FPeval{\TN}{ clip(\mid * 1.5 )} %9
+\pgfplotstablegetelem{0}{\TN}\of{Graphics/table.dat} \renewcommand{\t}{\pgfplotsretval}
+\fi 
+\else 
+\ifodd\mid %10
+\FPeval{\TO}{clip(\mid * 1.5 - 1.5)} 
+\FPeval{\TR}{clip(\mid * 1.5 - .5)} 
+\pgfplotstablegetelem{0}{\TO}\of{Graphics/table.dat} \newcommand{\TP}{\pgfplotsretval}  
+\FPeval{\TQ}{\TP}  
+\pgfplotstablegetelem{0}{\TR}\of{Graphics/table.dat} \newcommand{\TS}{\pgfplotsretval}  
+\FPeval{\t}{clip(\TQ + (\TS - \TQ) * .75 )}
+\else %8
+\FPeval{\TT}{ clip(\mid * 1.5  - 1)} 
+\pgfplotstablegetelem{0}{\TT}\of{Graphics/table.dat} \renewcommand{\t}\pgfplotsretval
+\fi 
+
+\fi 
+\FPeval{\uw}{ clip(\t + 1.5 * (\t - \X)) } \uw \\
+
+}
+
+\begin{document}
+\pgfplotstabletypeset {Graphics/table.dat}\\
+\Median 
+\LQ 
+\UQ 
+\LW 
+\UW
+\end{document}
+
+
+
+
+
+
