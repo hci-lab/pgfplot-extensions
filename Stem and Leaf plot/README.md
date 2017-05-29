@@ -2,7 +2,8 @@
 
 ## Notes
   * stem and leaf for is under maintainace by hci-lab students
-  * stem and leaf data must be ordered
+  * stem and leaf data must be ordered ** Ascending Way **
+
 
 ## Bugs (fixed / not)
   * fixing character width
